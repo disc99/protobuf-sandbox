@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package disc99.echo.v1;
+
+//import "google/protobuf/timestamp.proto";
+//import "google/api/annotations.proto";
+
+option java_multiple_files = true;
+option java_package = "io.disc99.echo.v1";
+
+service EchoService {
+    rpc CreateEcho(CreateEchoRequest) returns (Echo) {
+//        option (google.api.http) = {
+//            post: "/echo"
+//            body: "*"
+//        };
+    };
+
+    rpc GetEcho(GetEchoRequest) returns (Echo) {
+//        option (google.api.http) = {
+//            get: "/echo"
+//        };
+    };
+}
+
+message CreateEchoRequest {
+    string message = 1;
+}
+
+message GetEchoRequest {
+    string message = 1;
+}
+
+message Echo {
+    string message = 1;
+}
+
+message EchoCalledEvent {
+    string event_id = 1;
+    string event_type = 2;
+//    google.protobuf.Timestamp event_create_time = 3;
+    string message = 4;
+}
