@@ -42,8 +42,8 @@ public class SpringGRpcClientOnWebFluxApplication {
     RouterFunction<ServerResponse> route() {
         EchoHandler echoHandler = new EchoHandler();
         return RouterFunctions.route()
-                .POST("/echo", echoHandler::getEcho)
-                .POST("/echo2", echoHandler::geEcho2)
+                .POST("/echo_with_text", echoHandler::getEcho)
+                .POST("/echo_with_json", echoHandler::geEcho2)
                 .build();
     }
 

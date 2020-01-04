@@ -24,12 +24,22 @@ class SpringGRpcClientOnWebFluxApplicationTest {
     }
 
     @Test
-    public void testMessage() throws Exception {
+    public void testEchoWithText() throws Exception {
         this.webTestClient.post()
-                .uri("/echo") //
-                .bodyValue("{\"message\":\"Hello\"}")
+                .uri("/echo_with_text") //
+                .bodyValue("message\": \"Hello\"")
                 .exchange() //
                 .expectStatus().isOk() //
                 .expectBody(String.class).isEqualTo("message: \"Hello!\"\n");
+    }
+
+    @Test
+    public void testEchoWithJson() throws Exception {
+        this.webTestClient.post()
+                .uri("/echo_with_json") //
+                .bodyValue("{\"message\":\"Hello\"}")
+                .exchange() //
+                .expectStatus().isOk() //
+                .expectBody(String.class).isEqualTo("{\n  \"message\": \"Hello\"\n}");
     }
 }
