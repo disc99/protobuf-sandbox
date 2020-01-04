@@ -76,7 +76,6 @@ project(':spring-grpc-server') {
 		generateProtoTasks {
 			all()*.plugins {
 				grpc {}
-				reactor {}
 			}
 		}
 	}
@@ -172,11 +171,17 @@ project(':spring-grpc-client-on-webflux') {
 			grpc {
 				artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
 			}
+			webflux {
+				artifact = 'io.protobufx:protoc-gen-spring-webflux:0.0.7'
+			}
 		}
 
 		generateProtoTasks {
 			all()*.plugins {
 				grpc {}
+				webflux {
+					option 'style=rest'
+				}
 			}
 		}
 	}
@@ -190,4 +195,7 @@ project(':spring-grpc-client-on-webflux') {
 		}
 	}
 
+	test {
+		useJUnitPlatform()
+	}
 }
